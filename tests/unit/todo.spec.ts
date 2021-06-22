@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import ToDo from '@/components/ToDo.vue';
+import ToDo from '@client/components/ToDo.vue';
 
 describe('ToDo.vue', () => {
   let wrapper: ReturnType<typeof mount>;

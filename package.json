@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:client": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:unit:watch": "vue-cli-service test:unit --watch",
-    "lint": "vue-cli-service lint"
+    "lint": "eslint --ignore-path=.gitignore --ext=.ts,.vue client/",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "vue": "^3.0.0"
