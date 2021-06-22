@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+    "dev": "npm run dev:client & npm run dev:server",
+    "build": "npm run build:client & npm run build:server",
+    "dev:client": "vue-cli-service serve",
+    "dev:server": "cross-env NODE_ENV=development nodemon",
+    "build:server": "tsc && npx tsc-alias",
     "build:client": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:unit:watch": "vue-cli-service test:unit --watch",
@@ -11,6 +16,21 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "config": "^3.3.6",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "mongoose": "^5.12.14",
+    "morgan": "~1.9.1",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -28,10 +48,11 @@
     "eslint": "^7.29.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.0.0",
+    "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "typescript": "~4.1.5",
+    "tsconfig-paths": "^3.9.0",
     "vue-jest": "^5.0.0-0"
   }
 }

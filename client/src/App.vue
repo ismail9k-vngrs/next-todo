@@ -1,15 +1,15 @@
 <template>
-  <ToDo msg="Welcome to Your Vue.js + TypeScript App" />
+  <Todo msg="Welcome to Your Vue.js + TypeScript App" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ToDo from './components/ToDo.vue';
+import Todo from './components/Todo.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    ToDo,
+    Todo,
   },
 });
 </script>

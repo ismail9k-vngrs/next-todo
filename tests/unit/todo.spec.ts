@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils';
-import ToDo from '@client/components/ToDo.vue';
+import Todo from '@client/components/Todo.vue';
 
-describe('ToDo.vue', () => {
+describe('Todo.vue', () => {
   let wrapper: ReturnType<typeof mount>;
   beforeEach(() => {
-    wrapper = mount(ToDo);
+    wrapper = mount(Todo);
   });
 
-  it('Given empty ToDo list', () => {
+  it('Given empty Todo list', () => {
     expect(wrapper.find('ul.todo__list').exists()).toBe(true);
     expect(wrapper.findAll('ul > li').length).toBe(0);
   });

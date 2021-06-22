@@ -13,7 +13,7 @@
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  name: 'ToDo',
+  name: 'Todo',
   setup() {
     const items = ref<Array<string>>([]);
     const inputValue = ref<string>('');
