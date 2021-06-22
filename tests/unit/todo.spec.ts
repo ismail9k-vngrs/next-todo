@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import ToDo from '@/components/ToDo.vue';
 
 describe('ToDo.vue', () => {
-  let wrapper: any = null;
+  let wrapper: ReturnType<typeof mount>;
   beforeEach(() => {
     wrapper = mount(ToDo);
   });
