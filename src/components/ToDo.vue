@@ -3,6 +3,9 @@
     <ul class="todo__list">
       <li class="todo__item" v-for="item in items" :key="item">{{ item }}</li>
     </ul>
+
+    <input type="text" class="todo__input" />
+    <button class="todo__submit">add</button>
   </div>
 </template>
 
