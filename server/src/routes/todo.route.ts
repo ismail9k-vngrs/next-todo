@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import TodoController from '../controllers/todo.controller';
-import Route from '../interfaces/routes.interface';
+import Route from '~types/routes.interface';
 
 class TodoRoute implements Route {
   public path = '/todos';

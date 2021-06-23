@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import TodoService from '@server/services/todo.service';
-import { Todo } from '@server/interfaces/todo.interface';
+import { Todo } from '~types/todo.interface';
 
 class TodoController {
   private todoService = new TodoService();

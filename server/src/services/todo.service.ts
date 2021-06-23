@@ -1,5 +1,5 @@
 import HttpException from '../exceptions/HttpException';
-import { Todo } from '../interfaces/todo.interface';
+import { Todo } from '~types/todo.interface';
 import todoModel from '../models/todos.model';
 
 class TodoService {

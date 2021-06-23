@@ -7,9 +7,9 @@ import express, { Application } from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
-import { connect, set } from 'mongoose';
+import { connect } from 'mongoose';
 import { dbConnection } from './databases';
-import Routes from './interfaces/routes.interface';
+import Routes from '~types/routes.interface';
 
 const logger = console;
 class App {
