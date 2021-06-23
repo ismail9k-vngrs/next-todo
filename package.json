@@ -12,6 +12,8 @@
     "build:client": "vue-cli-service build",
     "test": "jest --runInBand",
     "test:watch": "npm run test -- --watchAll",
+    "test:client": "npm run test --selectProjects client",
+    "test:server": "npm run test --selectProjects server",
     "lint": "eslint --ignore-path=.gitignore --ext=.ts,.vue client/",
     "lint:fix": "npm run lint -- --fix"
   },
