@@ -41,9 +41,7 @@ class App {
   }
 
   private connectToDatabase() {
-    if (this.env !== 'production') {
-      set('debug', true);
-    }
+    if (this.env !== 'production') return;
 
     connect(dbConnection.url, dbConnection.options);
   }

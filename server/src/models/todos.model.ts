@@ -2,9 +2,12 @@ import { model, Schema, Document } from 'mongoose';
 import { Todo } from '../interfaces/todo.interface';
 
 const todoSchema: Schema = new Schema({
-  items: {
-    type: [{ message: String }],
+  message: {
+    type: String,
     required: true,
+  },
+  completed: {
+    type: Boolean,
   },
 });
 

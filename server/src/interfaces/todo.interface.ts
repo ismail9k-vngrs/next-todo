@@ -1,6 +1,5 @@
 export interface Todo {
-  _id: string;
-  items: {
-    message: string;
-  }[];
+  _id?: string;
+  message: string;
+  completed?: boolean;
 }
