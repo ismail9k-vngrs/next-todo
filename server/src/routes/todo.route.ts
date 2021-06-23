@@ -3,7 +3,7 @@ import TodoController from '../controllers/todo.controller';
 import Route from '../interfaces/routes.interface';
 
 class TodoRoute implements Route {
-  public path = '/todo';
+  public path = '/todos';
   public router = Router();
   public toDoController = new TodoController();
 
@@ -12,7 +12,7 @@ class TodoRoute implements Route {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}/:id`, this.toDoController.get);
+    this.router.get(`${this.path}`, this.toDoController.getAll);
   }
 }
 

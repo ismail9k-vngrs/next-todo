@@ -3,7 +3,7 @@ process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express from 'express';
+import express, { Application } from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
@@ -36,7 +36,7 @@ class App {
     });
   }
 
-  public getServer(): void {
+  public getServer(): Application {
     return this.app;
   }
 

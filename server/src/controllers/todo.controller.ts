@@ -1,10 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
 
 class TodoController {
-  public get = (req: Request, res: Response, next: NextFunction): void => {
+  public getAll = (req: Request, res: Response, next: NextFunction): void => {
     try {
-      // TODO
-      res.sendStatus(200);
+      res.json([
+        {
+          _id: 123,
+          message: 'lorem',
+          completed: false,
+        },
+      ]);
     } catch (error) {
       next(error);
     }

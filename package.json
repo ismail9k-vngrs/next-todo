@@ -10,8 +10,8 @@
     "dev:server": "cross-env NODE_ENV=development nodemon",
     "build:server": "tsc && npx tsc-alias",
     "build:client": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:unit:watch": "vue-cli-service test:unit --watch",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
     "lint": "eslint --ignore-path=.gitignore --ext=.ts,.vue client/",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -34,6 +34,13 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@types/compression": "^1.7.0",
+    "@types/config": "^0.0.38",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.10",
+    "@types/hpp": "^0.2.1",
+    "@types/morgan": "^1.9.2",
+    "@types/supertest": "^2.0.11",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
@@ -52,6 +59,7 @@
     "prettier": "^2.2.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "supertest": "^6.1.3",
     "tsconfig-paths": "^3.9.0",
     "vue-jest": "^5.0.0-0"
   }
