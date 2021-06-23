@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';
 import request from 'supertest';
-import dbHandler from '../utils/db-handler';
+import dbHandler from '@server/databases';
 import App from '@server/app';
 import TodoRoutes from '@server/routes/todo.route';
 import TodoService from '@server/services/todo.service';

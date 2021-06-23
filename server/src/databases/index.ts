@@ -1,13 +1,46 @@
-import config from 'config';
-import { dbConfig } from '~types/db.interface';
+import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
-const { host, port, database }: dbConfig = config.get('dbConfig');
+const mongod = new MongoMemoryServer();
 
-export const dbConnection = {
-  url: `mongodb://${host}:${port}/${database}`,
-  options: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
+const dbHandler = {
+  /**
+   * Connect to the in-memory database.
+   */
+  connect: async (): Promise<void> => {
+    if (mongoose.connection.readyState >= 1) return;
+
+    const uri = await mongod.getUri();
+
+    const mongooseOpts = {
+      useNewUrlParser: true,
+      autoReconnect: true,
+      reconnectTries: Number.MAX_VALUE,
+      reconnectInterval: 1000,
+    };
+    await mongoose.connect(uri, mongooseOpts);
+  },
+
+  /**
+   * Drop database, close the connection and stop mongod.
+   */
+  closeDatabase: async (): Promise<void> => {
+    await mongoose.connection.dropDatabase();
+    await mongoose.connection.close();
+    await mongod.stop();
+  },
+
+  /**
+   * Remove all the data for all db collections.
+   */
+  clearDatabase: async (): Promise<void> => {
+    const collections = mongoose.connection.collections;
+
+    for (const key in collections) {
+      const collection = collections[key];
+      await collection.deleteMany({});
+    }
   },
 };
+
+export default dbHandler;

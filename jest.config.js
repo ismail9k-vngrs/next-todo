@@ -12,6 +12,7 @@ module.exports = {
         '^.+\\.vue$': 'vue-jest',
       },
       moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
+      setupFiles: ['<rootDir>/tests/setup.ts'],
     },
     {
       displayName: 'server',

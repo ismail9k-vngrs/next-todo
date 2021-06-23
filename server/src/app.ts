@@ -7,8 +7,7 @@ import express, { Application } from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
-import { connect } from 'mongoose';
-import { dbConnection } from './databases';
+import dbHandler from './databases';
 import Routes from '~types/routes.interface';
 
 const logger = console;
@@ -41,9 +40,7 @@ class App {
   }
 
   private connectToDatabase() {
-    if (this.env !== 'production') return;
-
-    connect(dbConnection.url, dbConnection.options);
+    dbHandler.connect();
   }
 
   private initializeMiddlewares() {

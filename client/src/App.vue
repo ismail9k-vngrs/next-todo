@@ -1,5 +1,6 @@
 <template>
-  <Todo msg="Welcome to Your Vue.js + TypeScript App" />
+  <span>TODO</span>
+  <Todo />
 </template>
 
 <script lang="ts">
