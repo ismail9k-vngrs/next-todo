@@ -8,13 +8,15 @@ import TodoService from '@server/services/todo.service';
 describe('Todos apo', () => {
   let app: any;
   let todoService: any;
+  let todoRoutes: any;
 
   /**
    * Connect to a new in-memory database before running any tests.
    */
   beforeAll(async () => {
     await dbHandler.connect();
-    app = new App([new TodoRoutes()]).getServer();
+    todoRoutes = new TodoRoutes();
+    app = new App([todoRoutes]).getServer();
     todoService = new TodoService();
   });
   /**
@@ -27,28 +29,47 @@ describe('Todos apo', () => {
    */
   afterAll(async () => await dbHandler.closeDatabase());
 
-  it('GET /todos --> returns 404', () => {
-    return request(app).get('/todos').expect('Content-Type', /json/).expect(404);
+  describe('GET /todos', () => {
+    it('returns 404', () => {
+      return request(app).get(`${todoRoutes.path}`).expect(404);
+    });
+
+    it('returns list of todos', async () => {
+      // Seed some data
+      await todoService.add({ message: 'Clean my car', completed: false });
+      await todoService.add({ message: 'Go to work', completed: false });
+
+      return request(app)
+        .get(`${todoRoutes.path}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                _id: expect.any(String),
+                message: expect.any(String),
+                completed: expect.any(Boolean),
+              }),
+            ])
+          );
+        });
+    });
   });
 
-  it('GET /todos --> returns list of todos', async () => {
-    await todoService.addTodo({ message: 'Clean my car' });
-    await todoService.addTodo({ message: 'Go to work' });
-
-    return request(app)
-      .get('/todos')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then((response) => {
-        expect(response.body).toEqual(
-          expect.arrayContaining([
-            expect.objectContaining({
-              _id: expect.anything(),
-              message: expect.any(String),
-              completed: expect.any(Boolean),
-            }),
-          ])
-        );
-      });
+  describe('POST /todos', () => {
+    it('create new todo', async () => {
+      const todoData = { message: 'Clean my car', completed: false };
+      request(app)
+        .post(`${todoRoutes.path}`)
+        .send(todoData)
+        .expect(201)
+        .then((response) => {
+          expect(response.body).toMatchObject({
+            _id: expect.any(String),
+            ...todoData,
+          });
+        });
+    });
   });
 });
