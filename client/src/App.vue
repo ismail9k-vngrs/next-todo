@@ -1,5 +1,5 @@
 <template>
-  <span>TODO</span>
+  <h1 class="header">todos</h1>
   <Todo />
 </template>
 
@@ -16,11 +16,12 @@ export default defineComponent({
 </script>
 
 <style lang="stylus">
-#app
+@import 'styles/colors.styl'
+@import 'styles/main.styl'
+
+.header
   margin-top: 60px
-  color: #2c3e50
   text-align: center
-  font-family: Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
+  font-weight: 200
+  font-size: 40px
 </style>
