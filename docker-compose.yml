@@ -7,3 +7,14 @@ services:
     container_name: client
     ports:
       - '80:80'
+
+  server:
+    build:
+      context: ./
+      dockerfile: dockerfiles/Dockerfile.server
+    container_name: server
+    ports:
+      - '3000:3000'
+    environment:
+      PORT: 3000
+    restart: 'unless-stopped'
