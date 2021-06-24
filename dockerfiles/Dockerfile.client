@@ -13,7 +13,7 @@ RUN npm run build:client
 # Production stage
 # ................
 FROM nginx:stable-alpine as PRODUCTION-STAGE
-COPY --from=BUILD_STAGE /app/dist /usr/share/nginx/html
+COPY --from=BUILD_STAGE /app/dist/client /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

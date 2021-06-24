@@ -6,7 +6,7 @@ module.exports = {
   projects: [
     {
       displayName: 'client',
-      testMatch: ['**/tests/client/**/*.spec.[jt]s?(x)'],
+      testMatch: ['<rootDir>/tests/client/**/*.spec.[jt]s?(x)'],
       preset: '@vue/cli-plugin-unit-jest/presets/typescript',
       transform: {
         '^.+\\.vue$': 'vue-jest',
@@ -16,7 +16,7 @@ module.exports = {
     },
     {
       displayName: 'server',
-      testMatch: ['**/tests/server/**/*.spec.[jt]s?(x)'],
+      testMatch: ['<rootDir>/tests/server/**/*.spec.[jt]s?(x)'],
       moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
       transformIgnorePatterns: ['/node_modules/'],
       transform: {
