@@ -37,7 +37,6 @@ export default defineComponent({
       try {
         const results = await client.getTodos();
         todos.value = results;
-        console.log(todos.value);
       } finally {
         isLoading.value = false;
       }
