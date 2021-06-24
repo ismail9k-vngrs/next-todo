@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  client:
+    build:
+      context: ./
+      dockerfile: dockerfiles/Dockerfile.client
+    container_name: client
+    ports:
+      - '80:80'
