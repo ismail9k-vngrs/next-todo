@@ -57,7 +57,7 @@ describe('Todo.vue', () => {
     const button = wrapper.find('.todo__submit');
 
     await input.setValue('Buy some milk');
-    await button.trigger('click');
+    await button.trigger('submit');
 
     const items = wrapper.findAll('ul > li');
     expect(items.length).toBe(2);
