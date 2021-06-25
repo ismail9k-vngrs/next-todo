@@ -25,7 +25,6 @@ class ApiClient {
     path: string,
     options: RequestOptions = {}
   ): Promise<T> {
-    console.log(this.baseUrl);
     const requestUrl = `${this.baseUrl}${path}`;
     if (options.body) {
       options.body = JSON.stringify(options.body);
