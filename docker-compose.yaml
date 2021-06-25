@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   client:
-    image: gcr.io/${PROJECT_ID}/client:latest
+    image: gcr.io/$PROJECT_ID/client:latest
     build:
       context: ./
       dockerfile: dockerfiles/Dockerfile.client
@@ -10,7 +10,7 @@ services:
       - '80:80'
 
   server:
-    image: gcr.io/${PROJECT_ID}/server:latest
+    image: gcr.io/$PROJECT_ID/server:latest
     build:
       context: ./
       dockerfile: dockerfiles/Dockerfile.server
