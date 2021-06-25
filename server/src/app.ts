@@ -46,12 +46,11 @@ class App {
   private initializeMiddlewares() {
     if (this.env === 'production') {
       this.app.use(morgan('combined'));
-      this.app.use(cors({ origin: process.env.BASE_URL, credentials: true }));
     } else {
       this.app.use(morgan('dev'));
-      this.app.use(cors({ origin: true, credentials: true }));
     }
 
+    this.app.use(cors({ origin: true, credentials: true }));
     this.app.use(hpp());
     this.app.use(helmet());
     this.app.use(compression());
