@@ -2,8 +2,8 @@ steps:
   # Run the app and dependencies in the background using docker-compose.
   # Warning: this won't be cleaned up, which might be an issue if you run it
   # with the local builder.
-  - name: 'docker'
-    args: ['compose', 'up', '-d']
+  - name: 'docker/compose:1.15.0'
+    args: ['build']
     env:
       - 'PROJECT_ID=$PROJECT_ID'
 
