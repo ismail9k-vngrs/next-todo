@@ -2,10 +2,10 @@ steps:
   # Run the app and dependencies in the background using docker-compose.
   # Warning: this won't be cleaned up, which might be an issue if you run it
   # with the local builder.
-  - name: 'docker/compose:1.15.0'
-    args: ['up', '-d']
+  - name: 'docker'
+    args: ['compose', 'up', '-d']
     env:
-    - 'PROJECT_ID=$PROJECT_ID'
+      - 'PROJECT_ID=$PROJECT_ID'
 
   # Deploy client
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,6 +17,7 @@ steps:
       '--project', '$PROJECT_ID',
       '--region', 'us-central1',
       '--platform', 'managed',
+      '--port', '80',
       '--quiet',
       '--allow-unauthenticated']
 
@@ -30,6 +31,7 @@ steps:
       '--project', '$PROJECT_ID',
       '--region', 'us-central1',
       '--platform', 'managed',
+      '--port', '3000',
       '--quiet',
       '--allow-unauthenticated']
 
