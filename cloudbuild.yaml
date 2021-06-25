@@ -38,7 +38,7 @@ steps:
       '--quiet',
       '--allow-unauthenticated']
 
-
+timeout: 1200s
 images:
   - 'gcr.io/$PROJECT_ID/client:latest'
   - 'gcr.io/$PROJECT_ID/server:latest'
