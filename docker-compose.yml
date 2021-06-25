@@ -1,6 +1,7 @@
 version: '3.3'
 services:
   client:
+    image: gcr.io/${PROJECT_ID}/client:$SHORT_SHA
     build:
       context: ./
       dockerfile: dockerfiles/Dockerfile.client
@@ -10,6 +11,7 @@ services:
 
   server:
     build:
+      image: gcr.io/${PROJECT_ID}/server:$SHORT_SHA
       context: ./
       dockerfile: dockerfiles/Dockerfile.server
     container_name: server
