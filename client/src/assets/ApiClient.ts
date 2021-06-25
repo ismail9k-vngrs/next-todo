@@ -6,7 +6,7 @@ type RequestOptions = {
 };
 
 class ApiClient {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = process.env.VUE_APP_API_BASE_URL;
   private headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -25,6 +25,7 @@ class ApiClient {
     path: string,
     options: RequestOptions = {}
   ): Promise<T> {
+    console.log(this.baseUrl);
     const requestUrl = `${this.baseUrl}${path}`;
     if (options.body) {
       options.body = JSON.stringify(options.body);

@@ -6,6 +6,7 @@ steps:
     args: ['build']
     env:
       - 'PROJECT_ID=$PROJECT_ID'
+      - 'VUE_APP_API_BASE_URL=$_API_BASE_URL'
 
   # Deploy client
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
