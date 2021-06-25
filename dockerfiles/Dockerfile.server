@@ -1,7 +1,7 @@
 # ...........
 # Build stage
 # ...........
-FROM node:lts-slim as BUILD_STAGE
+FROM node:14-slim as BUILD_STAGE
 WORKDIR /app
 COPY . .
 RUN npm install --quite
@@ -11,7 +11,7 @@ RUN npm run build:server
 # ................
 # Production stage
 # ................
-FROM node:lts-alpine as PRODUCTION-STAGE
+FROM node:14 as PRODUCTION-STAGE
 WORKDIR /app
 COPY package*.json .
 RUN npm install --production --quite
