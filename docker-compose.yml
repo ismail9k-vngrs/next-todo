@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   client:
-    image: gcr.io/${PROJECT_ID}/client:$SHORT_SHA
+    image: gcr.io/${PROJECT_ID}/client:latest
     build:
       context: ./
       dockerfile: dockerfiles/Dockerfile.client
@@ -10,8 +10,8 @@ services:
       - '80:80'
 
   server:
+    image: gcr.io/${PROJECT_ID}/server:latest
     build:
-      image: gcr.io/${PROJECT_ID}/server:$SHORT_SHA
       context: ./
       dockerfile: dockerfiles/Dockerfile.server
     container_name: server
