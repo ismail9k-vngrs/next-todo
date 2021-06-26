@@ -24,6 +24,18 @@ class TodoController {
       next(error);
     }
   };
+
+  public updateTodo = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const todoData: Todo = req.body;
+      const updatedTodo: Todo = await this.todoService.updateById(id, todoData);
+
+      res.status(200).json(updatedTodo);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default TodoController;

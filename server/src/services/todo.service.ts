@@ -16,6 +16,11 @@ class TodoService {
     const todo: Todo = await this.todos.create(todoData);
     return todo;
   }
+
+  public async updateById(id: string, todoData: Todo): Promise<any> {
+    const todo = await this.todos.updateOne({ _id: id }, todoData);
+    return todo;
+  }
 }
 
 export default TodoService;

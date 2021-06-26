@@ -14,6 +14,7 @@ class TodoRoute implements Route {
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.todoController.findAll);
     this.router.post(`${this.path}`, this.todoController.createTodo);
+    this.router.put(`${this.path}/:id`, this.todoController.updateTodo);
   }
 }
 

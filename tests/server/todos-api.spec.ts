@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import request from 'supertest';
 import dbHandler from '@server/databases';
 import App from '@server/app';
@@ -69,6 +70,23 @@ describe('Todos apo', () => {
             ...todoData,
           });
         });
+    });
+  });
+
+  describe('PUT /todos/:id', () => {
+    it('update a todo', async () => {
+      const id = new mongoose.Types.ObjectId().toHexString();
+      const todoData = { message: 'Clean my car', completed: false };
+
+      await todoService.add({ _id: id, ...todoData });
+      await request(app).put(`${todoRoutes.path}/${id}`).send({ completed: true }).expect(200);
+
+      // Find updated doc
+      const doc = await todoService.todos.findById(id, 'completed message').exec();
+      expect(doc).toMatchObject({
+        message: todoData.message,
+        completed: true,
+      });
     });
   });
 });
