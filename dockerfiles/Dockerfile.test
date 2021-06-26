@@ -1,7 +1,7 @@
 # ...........
-# Build stage
+# Test stage
 # ...........
-FROM node:lts-slim as BUILD_STAGE
+FROM node:14 as TEST_STAGE
 WORKDIR /app
 COPY . .
 
@@ -11,4 +11,5 @@ ARG API_BASE_URL
 ENV VUE_APP_API_BASE_URL=$API_BASE_URL
 
 RUN npm install --quite
+RUN npm build
 RUN npm run test
