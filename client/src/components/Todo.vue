@@ -9,9 +9,13 @@
         class="todo__item"
         :class="{ 'todo__item--checked': todo.completed }"
         v-for="todo in todos"
-        :key="todo.id"
+        :key="todo._id"
       >
-        <input type="checkbox" :checked="todo.completed" />
+        <input
+          type="checkbox"
+          :checked="todo.completed"
+          @change="($event) => updateTodo($event, todo._id)"
+        />
         <span>{{ todo.message }}</span>
       </li>
     </ul>
@@ -50,9 +54,19 @@ export default defineComponent({
         isLoading.value = false;
       }
     }
+
     async function addTodo(message: string) {
       try {
         await client.createTodo({ message, completed: false });
+      } finally {
+        isLoading.value = false;
+      }
+    }
+
+    async function updateTodo(event: Event, id: string) {
+      const { checked } = event.target as HTMLInputElement;
+      try {
+        await client.updateTodo(id, { completed: checked });
       } finally {
         isLoading.value = false;
       }
@@ -64,6 +78,7 @@ export default defineComponent({
       todos,
       inputValue,
       isLoading,
+      updateTodo,
       handleTodoSubmit,
     };
   },

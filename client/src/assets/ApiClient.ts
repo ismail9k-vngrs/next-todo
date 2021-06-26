@@ -20,6 +20,10 @@ class ApiClient {
     return this.__fetch<Todo>('POST', '/todos', { body: todoData });
   }
 
+  updateTodo(id: string, todoData: Partial<Todo>): Promise<Todo> {
+    return this.__fetch<Todo>('PUT', `/todos/${id}`, { body: todoData });
+  }
+
   private async __fetch<T>(
     method: RequestMethod,
     path: string,

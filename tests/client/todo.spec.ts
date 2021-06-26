@@ -64,4 +64,12 @@ describe('Todo.vue', () => {
     expect(items[1].text()).toBe('Buy some milk');
     expect(fetch.mock.calls.length).toEqual(2);
   });
+
+  it('Update element on toggle checkbox', async () => {
+    fetch.once(JSON.stringify({ success: true }));
+    const itemsCheckbox = wrapper.find('ul > li > [type=checkbox]');
+
+    await itemsCheckbox.trigger('change');
+    expect(fetch.mock.calls.length).toEqual(2);
+  });
 });
