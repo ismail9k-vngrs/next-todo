@@ -4,6 +4,8 @@
 FROM node:14-slim as BUILD_STAGE
 WORKDIR /app
 COPY . .
+
+RUN npm install --quite
 RUN npm run build:server
 
 # ................
