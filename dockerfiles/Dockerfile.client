@@ -11,8 +11,6 @@ ARG API_BASE_URL
 ENV VUE_APP_API_BASE_URL=$API_BASE_URL
 
 RUN npm install --quite
-RUN npm run lint:client
-RUN npm run test:client
 RUN npm run build:client
 
 # ................
