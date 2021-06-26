@@ -1,7 +1,7 @@
 import fetch from 'jest-fetch-mock';
 import { mount } from '@vue/test-utils';
 import Todo from '@client/components/Todo.vue';
-import { nextFrame } from '../utils';
+import { nextFrame } from '../../utils';
 
 describe('Todo.vue', () => {
   let wrapper: ReturnType<typeof mount>;
@@ -15,14 +15,7 @@ describe('Todo.vue', () => {
 
   afterEach(fetch.resetMocks);
 
-  it('Given Todo list', () => {
-    expect(wrapper.find('ul.todo__list').exists()).toBe(true);
-    expect(wrapper.findAll('ul > li').length).toBe(1);
-    expect(wrapper.find('ul > li').text()).toBe('Clean my car');
-    expect(fetch.mock.calls.length).toEqual(1);
-  });
-
-  it('Given empty Todo list when there are not todos', async () => {
+  it('Given empty Todo list when there are no todos', async () => {
     // clean all fetch mocks
     fetch.resetMocks();
 
@@ -38,16 +31,11 @@ describe('Todo.vue', () => {
     expect(fetch.mock.calls.length).toEqual(1);
   });
 
-  it('Has text input', () => {
-    const input = wrapper.find('input.todo__input');
-    expect(input.exists()).toBe(true);
-    expect(input.attributes('type')).toBe('text');
-  });
-
-  it('Has submit button', () => {
-    const button = wrapper.find('.todo__submit');
-    expect(button.exists()).toBe(true);
-    expect(button.text()).toBe('add');
+  it('Fetch Todos list from server list', () => {
+    expect(wrapper.find('ul.todo__list').exists()).toBe(true);
+    expect(wrapper.findAll('ul > li').length).toBe(1);
+    expect(wrapper.find('ul > li').text()).toBe('Clean my car');
+    expect(fetch.mock.calls.length).toEqual(1);
   });
 
   it('Adds new todo items', async () => {

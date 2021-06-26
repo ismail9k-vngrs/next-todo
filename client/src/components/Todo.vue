@@ -1,6 +1,6 @@
 <template>
   <div class="todo">
-    <div class="todo__loader" v-if="isLoading"></div>
+    <div class="todo__loader" v-show="isLoading"></div>
     <form class="todo__form" @submit.prevent="handleTodoSubmit">
       <input type="text" class="todo__input" placeholder="Add todo" v-model="inputValue" />
       <button class="todo__submit">add</button>
