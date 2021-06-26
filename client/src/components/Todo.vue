@@ -61,8 +61,6 @@ export default defineComponent({
         const results = await client.getTodos().catch(() => []);
         todos.value = results;
       } finally {
-        // Fake loading time
-        await new Promise((resolve) => setTimeout(resolve, 500));
         isLoading.value = false;
       }
     }
@@ -167,7 +165,7 @@ export default defineComponent({
   opacity: 0.8
   text-decoration-style: wavy
   text-decoration-line: line-through
-  text-decoration-color: $dark
+  text-decoration-color: $border
 
 .todo__loader
   position: absolute
