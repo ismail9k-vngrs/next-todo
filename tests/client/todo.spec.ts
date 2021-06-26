@@ -51,6 +51,7 @@ describe('Todo.vue', () => {
   });
 
   it('Adds new todo items', async () => {
+    // Create request
     fetch.once(JSON.stringify([{ message: 'Buy some milk', completed: false }]));
 
     const input = wrapper.find('.todo__input');
@@ -66,7 +67,9 @@ describe('Todo.vue', () => {
   });
 
   it('Update element on toggle checkbox', async () => {
+    // Update request
     fetch.once(JSON.stringify({ success: true }));
+
     const itemsCheckbox = wrapper.find('ul > li > [type=checkbox]');
 
     await itemsCheckbox.trigger('change');

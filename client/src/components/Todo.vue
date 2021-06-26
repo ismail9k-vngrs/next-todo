@@ -1,5 +1,6 @@
 <template>
   <div class="todo">
+    <div class="todo__loader" v-if="isLoading"></div>
     <form class="todo__form" @submit.prevent="handleTodoSubmit">
       <input type="text" class="todo__input" placeholder="Add todo" v-model="inputValue" />
       <button class="todo__submit">add</button>
@@ -14,7 +15,7 @@
         <input
           type="checkbox"
           :checked="todo.completed"
-          @change="($event) => updateTodo($event, todo._id)"
+          @change="($event) => handleTodoUpdate(todo._id, $event)"
         />
         <span>{{ todo.message }}</span>
       </li>
@@ -29,47 +30,51 @@ import ApiClient from '../assets/ApiClient';
 
 export default defineComponent({
   name: 'Todo',
-
   setup() {
     const client = new ApiClient();
     const todos = ref<Array<Todo>>([]);
     const inputValue = ref<string>('');
     const isLoading = ref<boolean>(true);
 
-    function handleTodoSubmit() {
+    async function handleTodoSubmit() {
       if (!inputValue.value.length) return;
 
+      // Update client for instant feedback
       const message = inputValue.value;
       todos.value.push({ message });
       inputValue.value = '';
 
-      addTodo(message);
+      // Create server data
+      await addTodo(message);
+    }
+
+    async function handleTodoUpdate(id: string, event: Event) {
+      const { checked } = event.target as HTMLInputElement;
+
+      await updateTodo(id, { completed: checked });
     }
 
     async function fetchTodos() {
+      isLoading.value = true;
+
       try {
-        const results = await client.getTodos();
+        const results = await client.getTodos().catch(() => []);
         todos.value = results;
       } finally {
+        // Fake loading time
+        await new Promise((resolve) => setTimeout(resolve, 500));
         isLoading.value = false;
       }
     }
 
     async function addTodo(message: string) {
-      try {
-        await client.createTodo({ message, completed: false });
-      } finally {
-        isLoading.value = false;
-      }
+      await client.createTodo({ message, completed: false });
+      await fetchTodos();
     }
 
-    async function updateTodo(event: Event, id: string) {
-      const { checked } = event.target as HTMLInputElement;
-      try {
-        await client.updateTodo(id, { completed: checked });
-      } finally {
-        isLoading.value = false;
-      }
+    async function updateTodo(id: string, todoData: Partial<Todo>) {
+      await client.updateTodo(id, todoData);
+      await fetchTodos();
     }
 
     fetchTodos();
@@ -78,7 +83,7 @@ export default defineComponent({
       todos,
       inputValue,
       isLoading,
-      updateTodo,
+      handleTodoUpdate,
       handleTodoSubmit,
     };
   },
@@ -163,4 +168,28 @@ export default defineComponent({
   text-decoration-style: wavy
   text-decoration-line: line-through
   text-decoration-color: $dark
+
+.todo__loader
+  position: absolute
+  top: -1px
+  right: 0
+  left: 0
+  overflow: hidden
+  height: 4px
+  &:after
+    position: absolute
+    left: 0
+    display: block
+    width: 50px
+    height: 100%
+    border-radius: 4px
+    background-color: $dark
+    content: ''
+    animation: loaderAnimation 1s infinite linear
+
+@keyframes loaderAnimation
+  from
+    transform: translate3d(-100%, 0, 0)
+  to
+    transform: translate3d(600px, 0, 0)
 </style>
