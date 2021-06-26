@@ -17,7 +17,8 @@
     "lint": "npm run lint:client & npm run lint:server",
     "lint:client": "eslint --ignore-path=.gitignore --ext=.ts,.vue client/",
     "lint:server": "eslint --ignore-path=.gitignore --ext=.ts server/",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "pretest": "npm run lint"
   },
   "dependencies": {
     "compression": "^1.7.4",

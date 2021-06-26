@@ -1,0 +1,14 @@
+# ...........
+# Build stage
+# ...........
+FROM node:lts-slim as BUILD_STAGE
+WORKDIR /app
+COPY . .
+
+ARG API_BASE_URL
+
+# Env vars available during build time
+ENV VUE_APP_API_BASE_URL=$API_BASE_URL
+
+RUN npm install --quite
+RUN npm run test
