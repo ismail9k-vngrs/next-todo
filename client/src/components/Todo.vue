@@ -159,15 +159,24 @@ export default defineComponent({
   padding: 0
 
 .todo__item
-  display: flex
+  display: grid
   align-items: center
   padding: 0.5em
   font-size: 20px
+  grid-template-columns: 30px 1fr 30px
   &:not(:last-child)
     border-bottom: 1px solid $border
 
-.todo__item [type=checkbox]
-  margin-inline-end: 20px
+.todo__remove
+  padding: 0.5em
+  border: 0
+  border-radius: 6px
+  background-color: transparent
+  color: $red
+  font-weight: bold
+  cursor: pointer
+  &:hover
+    background-color: $gray
 
 .todo__item--checked
   opacity: 0.8
