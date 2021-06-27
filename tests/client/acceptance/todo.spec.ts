@@ -11,7 +11,7 @@ describe('Todo.vue', () => {
     await nextFrame();
   });
 
-  it('Given Todo list', () => {
+  it('Given empty todo list', () => {
     expect(wrapper.find('ul.todo__list').exists()).toBe(true);
     expect(wrapper.findAll('ul > li').length).toBe(0);
   });

@@ -20,8 +20,12 @@ class ApiClient {
     return this.__fetch<Todo>('POST', '/todos', { body: todoData });
   }
 
-  updateTodo(id: string, todoData: Partial<Todo>): Promise<Todo> {
+  updateTodo(id: string, todoData: Partial<any>): Promise<Todo> {
     return this.__fetch<Todo>('PUT', `/todos/${id}`, { body: todoData });
+  }
+
+  removeTodo(id: string): Promise<any> {
+    return this.__fetch<Todo>('DELETE', `/todos/${id}`);
   }
 
   private async __fetch<T>(

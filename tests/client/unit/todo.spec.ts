@@ -34,7 +34,7 @@ describe('Todo.vue', () => {
   it('Fetch Todos list from server list', () => {
     expect(wrapper.find('ul.todo__list').exists()).toBe(true);
     expect(wrapper.findAll('ul > li').length).toBe(1);
-    expect(wrapper.find('ul > li').text()).toBe('Clean my car');
+    expect(wrapper.find('ul > li').find('span').text()).toBe('Clean my car');
     expect(fetch.mock.calls.length).toEqual(1);
   });
 
@@ -50,7 +50,7 @@ describe('Todo.vue', () => {
 
     const items = wrapper.findAll('ul > li');
     expect(items.length).toBe(2);
-    expect(items[1].text()).toBe('Buy some milk');
+    expect(items[1].find('span').text()).toBe('Buy some milk');
     expect(fetch.mock.calls.length).toEqual(2);
   });
 
@@ -58,9 +58,23 @@ describe('Todo.vue', () => {
     // Update request
     fetch.once(JSON.stringify({ success: true }));
 
-    const itemsCheckbox = wrapper.find('ul > li > [type=checkbox]');
+    const itemsCheckbox = wrapper.find('li > [type=checkbox]');
 
     await itemsCheckbox.trigger('change');
     expect(fetch.mock.calls.length).toEqual(2);
+  });
+
+  it('Can delete a todo', async () => {
+    // Delete request
+    fetch.once(JSON.stringify({ success: true }));
+
+    const deleteButton = wrapper.find('li > button');
+    await deleteButton.trigger('click');
+    // Wait UI update
+    await nextFrame();
+
+    const items = wrapper.findAll('ul > li');
+    expect(items.length).toBe(0);
+    expect(fetch.mock.calls.length).toEqual(3);
   });
 });

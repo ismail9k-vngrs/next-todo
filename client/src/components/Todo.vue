@@ -18,6 +18,8 @@
           @change="($event) => handleTodoUpdate(todo._id, $event)"
         />
         <span>{{ todo.message }}</span>
+
+        <button class="todo__remove" @click="() => handleTodoRemove(todo._id)">X</button>
       </li>
     </ul>
   </div>
@@ -54,6 +56,11 @@ export default defineComponent({
       await updateTodo(id, { completed: checked });
     }
 
+    async function handleTodoRemove(id: string) {
+      await client.removeTodo(id);
+      await fetchTodos();
+    }
+
     async function fetchTodos() {
       isLoading.value = true;
 
@@ -83,6 +90,7 @@ export default defineComponent({
       isLoading,
       handleTodoUpdate,
       handleTodoSubmit,
+      handleTodoRemove,
     };
   },
 });

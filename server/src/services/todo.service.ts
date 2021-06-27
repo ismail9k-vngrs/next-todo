@@ -18,8 +18,11 @@ class TodoService {
   }
 
   public async updateById(id: string, todoData: Todo): Promise<any> {
-    const todo = await this.todos.updateOne({ _id: id }, todoData);
-    return todo;
+    return await this.todos.updateOne({ _id: id }, todoData);
+  }
+
+  public async deleteById(id: string): Promise<any> {
+    return await this.todos.deleteOne({ _id: id });
   }
 }
 
