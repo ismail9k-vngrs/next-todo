@@ -31,5 +31,13 @@ module.exports = {
       ],
       moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
     },
+    {
+      displayName: 'acceptance',
+      testMatch: ['<rootDir>/tests/acceptance/**/*.spec.[jt]s?(x)'],
+      preset: 'jest-puppeteer',
+      transform: {
+        '^.+\\.tsx?$': require.resolve('ts-jest'),
+      },
+    },
   ],
 };

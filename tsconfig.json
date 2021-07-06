@@ -12,7 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["webpack-env", "jest"],
+    "types": ["webpack-env", "jest", "puppeteer", "jest-environment-puppeteer", "expect-puppeteer"],
     "paths": {
       "@client/*": ["client/src/*"],
       "@server/*": ["server/src/*"],
