@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080/';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:8080/';
 
 describe('Todo', () => {
   beforeAll(async () => {

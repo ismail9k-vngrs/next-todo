@@ -12,4 +12,5 @@ ENV VUE_APP_API_BASE_URL=$API_BASE_URL
 
 RUN npm install --quite
 RUN npm build
-RUN npm run test
+RUN npm run test:client
+RUN npm run test:server
