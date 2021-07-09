@@ -18,8 +18,6 @@
           @change="($event) => handleTodoUpdate(todo._id, $event)"
         />
         <span>{{ todo.message }}</span>
-
-        <button class="todo__remove" @click="() => handleTodoRemove(todo._id)">X</button>
       </li>
     </ul>
   </div>

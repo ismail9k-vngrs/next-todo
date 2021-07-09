@@ -89,18 +89,4 @@ describe('Todos apo', () => {
       });
     });
   });
-
-  describe('DELETE /todos/:id', () => {
-    it('delete a todo', async () => {
-      const id = new mongoose.Types.ObjectId().toHexString();
-      const todoData = { message: 'Clean my car', completed: false };
-
-      await todoService.add({ _id: id, ...todoData });
-      await request(app).delete(`${todoRoutes.path}/${id}`).send({ completed: true }).expect(200);
-
-      // Find updated doc
-      const doc = await todoService.todos.findById(id).exec();
-      expect(doc).toBe(null); // Not found
-    });
-  });
 });

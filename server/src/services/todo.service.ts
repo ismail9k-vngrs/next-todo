@@ -20,10 +20,6 @@ class TodoService {
   public async updateById(id: string, todoData: Todo): Promise<any> {
     return await this.todos.updateOne({ _id: id }, todoData);
   }
-
-  public async deleteById(id: string): Promise<any> {
-    return await this.todos.deleteOne({ _id: id });
-  }
 }
 
 export default TodoService;

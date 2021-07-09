@@ -63,18 +63,4 @@ describe('Todo.vue', () => {
     await itemsCheckbox.trigger('change');
     expect(fetch.mock.calls.length).toEqual(2);
   });
-
-  it('Can delete a todo', async () => {
-    // Delete request
-    fetch.once(JSON.stringify({ success: true }));
-
-    const deleteButton = wrapper.find('li > button');
-    await deleteButton.trigger('click');
-    // Wait UI update
-    await nextFrame();
-
-    const items = wrapper.findAll('ul > li');
-    expect(items.length).toBe(0);
-    expect(fetch.mock.calls.length).toEqual(3);
-  });
 });
