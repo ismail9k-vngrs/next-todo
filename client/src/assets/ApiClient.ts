@@ -28,6 +28,10 @@ class ApiClient {
     return this.__fetch<Todo>('DELETE', `/todos/${id}`);
   }
 
+  removeAllTodos(): Promise<any> {
+    return this.__fetch<Todo>('DELETE', `/todos/all`);
+  }
+
   private async __fetch<T>(
     method: RequestMethod,
     path: string,

@@ -77,4 +77,20 @@ describe('Todo.vue', () => {
     expect(items.length).toBe(0);
     expect(fetch.mock.calls.length).toEqual(3);
   });
+
+  it('Can delete all todos', async () => {
+    // Delete request
+    fetch.once(JSON.stringify({ success: true }));
+    // 2nd fetch
+    fetch.once(JSON.stringify([]));
+
+    const deleteButton = wrapper.find('.todo__clearAll');
+    await deleteButton.trigger('click');
+    // Wait UI update
+    await nextFrame();
+
+    const items = wrapper.findAll('ul > li');
+    expect(items.length).toBe(0);
+    expect(fetch.mock.calls.length).toEqual(3);
+  });
 });

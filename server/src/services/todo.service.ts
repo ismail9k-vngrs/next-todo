@@ -24,6 +24,10 @@ class TodoService {
   public async deleteById(id: string): Promise<any> {
     return await this.todos.deleteOne({ _id: id });
   }
+
+  public async deleteAll(): Promise<any> {
+    return await this.todos.deleteMany({});
+  }
 }
 
 export default TodoService;

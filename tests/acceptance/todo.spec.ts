@@ -6,15 +6,15 @@ describe('Todo', () => {
     await page.goto(BASE_URL);
   });
 
-  beforeEach(async () => {
-    // Clean TODOs
-    const els = await page.$$('li > button');
-    for (const el of els) {
-      await el.click();
-    }
+  // beforeEach(async () => {
+  //   // Clean TODOs
+  //   const els = await page.$$('li > button');
+  //   for (const el of els) {
+  //     await el.click();
+  //   }
 
-    await sleep(1000);
-  });
+  //   await sleep(1000);
+  // });
 
   describe('As a user I should be able to:', () => {
     it('Add a new todo item', async () => {
@@ -37,6 +37,14 @@ describe('Todo', () => {
 
       const el = await page.$('li');
       expect(el).toBeFalsy;
+    });
+
+    it('remove all todos', async () => {
+      await expect(page).toClick('.todo__clearAll');
+
+      await sleep(1000);
+      const els = await page.$$('li');
+      expect(els.length).toBe(0);
     });
   });
 });

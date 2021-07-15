@@ -47,6 +47,20 @@ class TodoController {
       next(error);
     }
   };
+
+  public deleteAllTodos = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const results: Todo = await this.todoService.deleteAll();
+      res.status(200).json(results);
+    } catch (error) {
+      console.log('error', error);
+      next(error);
+    }
+  };
 }
 
 export default TodoController;

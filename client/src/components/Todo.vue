@@ -22,6 +22,8 @@
         <button class="todo__remove" @click="() => handleTodoRemove(todo._id)">X</button>
       </li>
     </ul>
+
+    <button class="todo__clearAll" @click="handleTodoRemoveAll">Clear All</button>
   </div>
 </template>
 
@@ -60,6 +62,10 @@ export default defineComponent({
       await client.removeTodo(id);
       await fetchTodos();
     }
+    async function handleTodoRemoveAll() {
+      await client.removeAllTodos();
+      await fetchTodos();
+    }
 
     async function fetchTodos() {
       isLoading.value = true;
@@ -91,6 +97,7 @@ export default defineComponent({
       handleTodoUpdate,
       handleTodoSubmit,
       handleTodoRemove,
+      handleTodoRemoveAll,
     };
   },
 });

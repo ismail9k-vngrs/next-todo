@@ -103,4 +103,12 @@ describe('Todos apo', () => {
       expect(doc).toBe(null); // Not found
     });
   });
+
+  describe('DELETE /todos/all', () => {
+    it('delete a todo', async () => {
+      await request(app).delete(`${todoRoutes.path}/all`).expect(200);
+
+      await request(app).get(`${todoRoutes.path}`).expect(404);
+    });
+  });
 });

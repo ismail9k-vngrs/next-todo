@@ -32,4 +32,10 @@ describe('Todo.vue', () => {
     const loader = wrapper.find('.todo__loader');
     expect(loader.exists()).toBe(true);
   });
+
+  it('Have delete all button', () => {
+    const button = wrapper.find('.todo__clearAll');
+    expect(button.exists()).toBe(true);
+    expect(button.text()).toBe('Clear All');
+  });
 });

@@ -60,4 +60,13 @@ describe('todo.service', () => {
       expect(results).toMatchObject({ ...todosData[0], completed: true });
     });
   });
+
+  describe('.deleteAll()', () => {
+    it('Should delete all the items', async () => {
+      await todoService.deleteAll();
+
+      const error = await todoService.find().catch((e: Error) => e);
+      expect(error.message).toBe('not found');
+    });
+  });
 });
